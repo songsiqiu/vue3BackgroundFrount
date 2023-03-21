@@ -1,0 +1,11 @@
+/// 利用flex来实现水平垂直居中
+/// @param {[string]} $direction [column] 布局方向, 可选值: column, row等
+/// @param {[string]} $justify  [center] 水平对齐, 可选值: center, flex-start, flex-end等
+/// @param {[string]} $align    [center] 垂直对齐, 可选值: center, flex-start, flex-end等
+
+@mixin box-center($direction: column, $justify: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}

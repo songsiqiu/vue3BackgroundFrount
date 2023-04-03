@@ -6,6 +6,10 @@ import router from './router'
 
 import './assets/main.css'
 
+import { setupEcharts } from './components/echarts'
+
+setupEcharts()
+
 const app = createApp(App)
 
 app.use(createPinia())

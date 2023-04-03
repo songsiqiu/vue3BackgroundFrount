@@ -1,86 +1,123 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import zhCN from 'ant-design-vue/es/locale/zh_CN'
+import { onMounted, ref } from 'vue'
+import echarts, { ECOption } from './components/echarts'
+import VScaleScreen from 'v-scale-screen'
+const showLine1 = ref<HTMLDivElement>()
+const showLine2 = ref<HTMLDivElement>()
+
+onMounted(() => {
+  if (showLine1.value) {
+    const myChart = echarts.init(showLine1.value)
+    const myChart2 = echarts.init(showLine2.value)
+    const option: ECOption = {
+      title: {
+        text: '矿山起爆器统计',
+      },
+      yAxis: {
+        type: 'category',
+        data: ['a矿山', 'b矿山', 'c矿山', 'd矿山', 'e矿山', 'f矿山', 'g矿山'],
+      },
+      xAxis: {
+        type: 'value',
+      },
+      legend: {
+        data: ['起爆雷管数', '起爆工程数', '起爆器成功数'],
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow',
+        },
+      },
+      series: [
+        {
+          data: [150, 230, 224, 218, 135, 147, 260],
+          type: 'bar',
+          name: '起爆雷管数',
+        },
+        {
+          data: [2, 3, 4, 2, 23, 1, 4],
+          type: 'bar',
+          name: '起爆工程数',
+        },
+        {
+          data: [150, 220, 224, 208, 135, 147, 260],
+          type: 'bar',
+          name: '起爆器成功数',
+        },
+      ],
+    }
+    const option2: ECOption = {
+      legend: {},
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow',
+        },
+      },
+      dataset: {
+        source: [
+          ['工厂', 'a雷管厂', 'b雷管厂', 'c雷管厂', 'd雷管厂'],
+          ['爆破公司1', 41, 30, 65, 53],
+          ['爆破公司2', 86, 92, 85, 83],
+          ['爆破公司3', 24, 67, 79, 86],
+        ],
+      },
+      xAxis: [
+        { type: 'category', gridIndex: 0 },
+        { type: 'category', gridIndex: 1 },
+      ],
+      yAxis: [{ gridIndex: 0 }, { gridIndex: 1 }],
+      grid: [{ bottom: '55%' }, { top: '55%' }],
+      series: [
+        // These series are in the first grid.
+        { type: 'bar', seriesLayoutBy: 'row' },
+        { type: 'bar', seriesLayoutBy: 'row' },
+        { type: 'bar', seriesLayoutBy: 'row' },
+        // These series are in the second grid.
+        { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+        { type: 'bar', xAxisIndex: 1, yAxisIndex: 1 },
+      ],
+    }
+    myChart.setOption(option)
+    myChart2.setOption(option2)
+  }
+})
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <VScaleScreen :boxStyle="{ 'background-color': 'white' }">
+    <div class="box">
+      <div class="title">
+        <h1>Dashbored</h1>
+      </div>
+      <div class="content">
+        <div ref="showLine1" class="show-line1"></div>
+        <div ref="showLine2" class="show-line1"></div>
+      </div>
     </div>
-  </header>
-
-  <RouterView />
+  </VScaleScreen>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.box {
+  overflow-x: hidden;
+  height: 100%;
 }
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
+.show-line1 {
+  width: 600px;
+  height: 600px;
   display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
 }
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.title {
+  text-align: center;
+  margin: 60px 0;
 }
 </style>

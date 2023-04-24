@@ -1,9 +1,9 @@
-{
-  "include": ["vite.config.*", "cypress.config.*", "playwright.config.*","src/config/proxy.ts", "src/config/_proxy.ts"],
+{ //针对node环境的ts配置文件
+  "include": ["vite.config.*", "cypress.config.*", "playwright.config.*","src/config/proxy.ts", "src/config/_proxy.ts"], //指定需要编译的文件
   "compilerOptions": {
-    "composite": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "composite": true, //可以同时编译多个ts文件
+    "module": "esnext", //esnext 为es最新模块化提案
+    "moduleResolution": "node",  //模块解析策略
+    "allowSyntheticDefaultImports": true //允许一个模块 没有使用export default 导出一个默认值，你仍然可以使用 import someName from 'someModule' 这样的语法来导入默认值。
   }
 }

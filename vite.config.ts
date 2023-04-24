@@ -30,7 +30,7 @@ export default defineConfig({
         javascriptEnabled: true,
       },
       scss: {
-        additionalData: `@use "@/styles/utils/_index.scss";`, //预处理的过程中添加额外数据
+        additionalData: '@use "@/styles/utils/_index.scss";', //预处理的过程中添加额外数据
       },
     },
   },

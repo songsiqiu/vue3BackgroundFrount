@@ -6,7 +6,6 @@ import router from './router'
 
 import { setupGlobComponent } from '@/components'
 
-import './assets/main.css'
 
 async function bootstrap() {
   const app = createApp(App)

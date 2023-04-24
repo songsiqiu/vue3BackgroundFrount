@@ -33,7 +33,6 @@ export default defineConfig({
         //预处理的过程中添加额外数据, 例如全局变量, mixin等
         additionalData: ` 
           @use "@/styles/utils/_index.scss" as *;
-          @use "@/styles/utils/index.scss" as *;
         `
       },
     },

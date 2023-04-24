@@ -1,4 +1,24 @@
 {
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true, //在class中可以用 = 来赋值属性
+    "module": "esnext", //生成的模块规范
+    "moduleResolution": "node",  // 使用node的模块解析策略
+    "strict": true, //启用所有严格类型检查选项
+    "jsx": "preserve", //保留jsx
+    "sourceMap": true, //生成sourceMap
+    "resolveJsonModule": true,   //允许导入json文件
+    "isolatedModules": true,  //将每个文件作为单独的模块处理 , 减少循环引用的错误
+    "esModuleInterop": true, //允许从没有默认导出的模块中导入默认导出
+    "lib": ["esnext", "dom"], //指定编译环境以获得更好的类型检查和提示
+    "skipLibCheck": true, //ts跳过检查第三方包过时和不完整的类型声明
+    "baseUrl": "./",  //模块解析基准路径
+    "paths": {  // 设置模块解析别名
+      "@/*": [
+        "src/*",
+      ]
+    }
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"

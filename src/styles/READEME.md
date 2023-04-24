@@ -14,3 +14,7 @@ scss中 _ 开头被称为 局部文件 ,不会被编译为独立的css文件,而
 
 ## 引入mixin
 在class中 使用`@include mixin名字`
+
+
+
+# 这个styles的文件最终在vite.config.ts中被引入加载

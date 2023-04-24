@@ -15,8 +15,7 @@
 <style lang="scss" scoped>
 .login-start {
   @include box-center(column,space-between);
-  height: 100vh;
-  width:100vw;
+  height:100%;
   background-image: url('./images/login-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;

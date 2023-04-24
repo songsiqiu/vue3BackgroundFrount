@@ -1,0 +1,22 @@
+/// 滚动条样式
+/// mix : scss中混合的概念，可以理解为一个函数，可以传入参数，返回一个样式
+
+@mixin scrollbar($size : 7px, $foreground-color: #e1e1e1, $background-color: mix($foreground-color, #fff, 50%)) {
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 1em;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 1em;
+    background-color: #e1e1e1;
+  }
+  
+  body {
+    scrollbar-face-color: $foreground-color; //滚动条颜色
+    scrollbar-track-color: $background-color; //滚动条轨道颜色
+  }
+}

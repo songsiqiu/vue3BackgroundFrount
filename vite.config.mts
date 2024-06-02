@@ -9,7 +9,7 @@ import proxy from './src/config/proxy'
 
 export default defineConfig({
   base: '/', //基础路径,也就是所有api请求的前缀
-  plugins: [
+  plugins: [ 
     vue(), 
     vueJsx(),
     eslintPlugin({

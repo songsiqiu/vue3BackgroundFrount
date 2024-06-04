@@ -1,9 +1,9 @@
 {
-  "include": ["vite.config.*", "cypress.config.*", "playwright.config.*","src/config/proxy.ts", "src/config/_proxy.ts"],
   "compilerOptions": {
     "composite": true,
     "module": "esnext",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "include": ["vite.config.ts", "src/config/proxy.ts", "src/config/_proxy.ts"]
 }

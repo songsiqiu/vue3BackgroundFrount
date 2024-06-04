@@ -1,4 +1,4 @@
-import { fileURLToPath, URL } from 'node:url'
+import * as path from 'path'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -10,7 +10,7 @@ import proxy from './src/config/proxy'
 export default defineConfig({
   base: '/', //基础路径,也就是所有api请求的前缀
   plugins: [
-    vue(), 
+    vue(),
     vueJsx(),
     eslintPlugin({
       shouldLint: (path)=>/\.(ts|tsx|js|jsx|vue)$/.test(path), //哪些文件需要eslint检查
@@ -20,9 +20,7 @@ export default defineConfig({
     })
   ],
   resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+    alias: { '@': path.resolve(__dirname, 'src') },
   },
   css: {
     preprocessorOptions: {
@@ -30,7 +28,7 @@ export default defineConfig({
         javascriptEnabled: true,
       },
       scss: {
-        additionalData: `@use "@/styles/utils/_index.scss";`, //预处理的过程中添加额外数据
+        additionalData: '@use "@/styles/utils/_index.scss";', //预处理的过程中添加额外数据
       },
     },
   },
